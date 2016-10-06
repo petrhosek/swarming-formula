@@ -1,0 +1,31 @@
+{% from "swarming/map.jinja" import swarming with context %}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>org.chromium.swarming_bot</string>
+  <key>WorkingDirectory</key>
+  <string>/b/swarm_slave</string>
+  <key>UserName</key>
+  <string>{{ swarming.user }}</string>
+  <key>GroupName</key>
+  <string>{{ swarming.group }}</string>
+  <key>Program</key>
+  <string>{{ swarming.bot_path }}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>start_bot</string>
+  </array>
+  <key>StandardOutPath</key>
+  <string>/var/log/swarming_bot.log</string>
+  <key>StandardErrorPath</key>
+  <string>/var/log/swarming_bot.log</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+</dict>
+</plist>

@@ -1,0 +1,15 @@
+{% set swarming_bot = salt['grains.filter_by']({
+    'default': {
+        'user': 'swarming',
+        'group': 'swarming',
+        'home': '/home/swarming',
+        'bot_path': '/b/swarm_slave/swarming_bot.zip',
+        'service': 'swarming_bot',
+    },
+    'Ubuntu': {
+    },
+    'MacOS': {
+        'home': '/Users/swarming',
+        'service': 'org.chromium.swarming_bot.plist',
+    },
+}, merge=salt['pillar.get']('swarming_bot:lookup', default='default')) %}
